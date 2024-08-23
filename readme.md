@@ -1,16 +1,63 @@
-This project is a multi-service web application setup using Docker, integrating Django, React, Flutter, and an LLM service. The Django application handles backend logic and user management, while React serves as the frontend UI. Flutter is used to build a web application that is deployed via Nginx. The LLM service, based on a GPT-2 model fine-tuned on the Alpaca dataset, is used for language modeling tasks.Used docker desktop to run the containers using docker swarm.
-Running the Services
+# Multi-Service Web Application
 
-    Django: Handles backend logic and user management. Access it at http://localhost:8000. Make sure to run docker-compose up or docker stack deploy for it to start correctly.
+This project is a comprehensive web application leveraging Docker to integrate Django, React, Flutter, and a Language Model (LLM) service. It utilizes Docker Swarm for orchestration and deployment.
 
-    React: Serves as the frontend for user interactions. Visit http://localhost:3000 to access the React application.
+## Architecture
 
-    Flutter: The web app built with Flutter is served by Nginx. Access it at http://localhost:9000.
+- **Backend**: Django application for server-side logic and user management
+- **Frontend**: React-based user interface
+- **Mobile/Web App**: Flutter application served via Nginx
+- **AI Service**: Custom LLM based on GPT-2, fine-tuned with the Alpaca dataset
 
-    LLM Service: This service uses a fine-tuned GPT-2 model on the Alpaca dataset for various language processing tasks. It's available at http://localhost:5000.
+## Prerequisites
 
-Notes
+- Docker Desktop
+- Git
 
-    Ensure all services are up and running by using Docker commands: docker stack deploy -c docker-stack.yml my_stack.
-    For the Django container, if issues arise (like failing to start), check Docker logs for details.
-    For running tests within Docker, ensure that your Dockerfile includes necessary test commands and execute them as part of the build process.
+## Installation
+
+1. Clone the repository:
+   git clone https://github.com/poornikabonam/Django-test.git
+
+2. Navigate to the project directory:
+   cd Django-test
+
+## Deployment
+
+1. Initialize Docker Swarm:
+   docker swarm init
+
+2. Deploy the stack:
+   docker stack deploy -c docker-stack.yml my_stack
+
+## Service Access
+
+After successful deployment, access the services at:
+
+- Django Backend: http://localhost:8000
+- React Frontend: http://localhost:3000
+- Flutter Web App: http://localhost:9000
+- LLM Service: http://localhost:5000
+
+## Monitoring
+
+To view running services:
+docker ps
+
+## Shutdown
+
+To leave the swarm and stop all services:
+docker swarm leave --force
+
+## Troubleshooting
+
+- If services fail to start, check Docker logs for detailed error messages.
+- For Django-specific issues, ensure the container is configured correctly in the docker-stack.yml file.
+
+## Testing
+
+To run tests within Docker:
+
+1. Ensure your Dockerfile includes necessary test commands.
+2. Execute tests as part of the build process or via custom Docker commands.
+
