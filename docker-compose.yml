@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - llm_model  # Ensure the LLM model is up before Django starts
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    
+
+  react:
+    build:
+      context: ./my-react-app
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+
+  llm_model:
+    build:
+      context: ./model_training  # This should be the directory containing the LLM Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+
+  flutter:
+    build:
+      context: ./flutter_frontend  # Directory containing the Flutter Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "9000:80"  # Map port 8080 on the host to port 80 in the container where Nginx serves the Flutter app
