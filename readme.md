@@ -17,18 +17,26 @@ This project is a comprehensive web application leveraging Docker to integrate D
 ## Installation
 
 1. Clone the repository:
+   ```console
    git clone https://github.com/poornikabonam/Django-test.git
+   ```
 
-2. Navigate to the project directory:
+3. Navigate to the project directory:
+   ```console
    cd Django-test
+   ```
 
 ## Deployment
 
 1. Initialize Docker Swarm:
+   ```console
    docker swarm init
+   ```
 
-2. Deploy the stack:
+3. Deploy the stack:
+   ```console
    docker stack deploy -c docker-stack.yml my_stack
+   ```
 
 ## Service Access
 
